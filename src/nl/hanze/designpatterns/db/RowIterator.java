@@ -4,6 +4,11 @@ import java.util.*;
 
 public class RowIterator<T> implements Iterator<T>
 {
+	/**
+	 * TODO Add explanation of why RowIterator is made protected.
+	 */
+	protected RowIterator() { }
+	
 	@Override
 	public boolean hasNext()
 	{

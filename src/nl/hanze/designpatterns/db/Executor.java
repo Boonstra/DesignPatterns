@@ -9,35 +9,51 @@ import java.util.*;
 
 public class Executor
 {
-	private Connection connection;
-	private Statement  statement;
-	private ResultSet  resultSet;
+	private static final String MYSQL_ERROR_PREFIX = "MySQL error: ";
 	
 	private String url;
 	private String user;
 	private String password;
 	
-	public Executor(String url, String user, String password)
-	{
-		this.url      = url;
-		this.user     = user;
-		this.password = password;
-		
-		connect();
-	}
+	private static Executor executor;
 	
-	public void connect()
+	private Executor() throws ExecutorException
 	{
 		try
 		{
+			// Load MySQL driver
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		}
 		catch (Exception e)
 		{
-			System.err.println(e.getMessage());
-			
-			return;
+			throw new ExecutorException(MYSQL_ERROR_PREFIX + "MySQL driver could not be found");
 		}
+	}
+	
+	/**
+	 * Singleton method
+	 * 
+	 * @return executor
+	 */
+	public static Executor getInstance() throws ExecutorException
+	{
+		if (executor == null)
+		{
+			executor = new Executor();
+		}
+		
+		return executor;
+	}
+	
+	/**
+	 * @param query
+	 * 
+	 * @throws Exception
+	 */
+	public void executeQuery(String query) throws Exception
+	{
+		Connection connection = null;
+		Statement  statement  = null;
 		
 		try
 		{
@@ -45,50 +61,115 @@ public class Executor
 			
 			statement = connection.createStatement();
 			
-			resultSet = statement.executeQuery("SELECT VERSION()");
-			
-			if (resultSet.next())
-			{
-				System.out.println(resultSet.getString(1));
-			}
+			statement.executeQuery(query);
 		}
 		catch (SQLException e)
 		{
-			System.err.println(e.getMessage());
+			System.err.println(MYSQL_ERROR_PREFIX + e.getMessage());
 		}
 		finally
 		{
-			try
+			if (statement != null)
 			{
-				if (resultSet != null)
-				{
-					resultSet.close();
-				}
-				
-				if (statement != null)
-				{
-					statement.close();
-				}
-				
-				if (connection != null)
-				{
-					connection.close();
-				}
+				statement.close();
 			}
-			catch (SQLException e)
+			
+			if (connection != null)
 			{
-				System.err.println(e.getMessage());
+				connection.close();
 			}
 		}
 	}
 	
-	public void executeQuery(String query) throws Exception
-	{
-			
-	}
-	
+	/**
+	 * @param query
+	 * @param c
+	 * 
+	 * @return iterator
+	 * 
+	 * @throws Exception
+	 */
 	public <T> Iterator<T> getIterator(String query, Class<T> c) throws Exception
 	{
+		Connection connection = null;
+		Statement  statement  = null;
+		ResultSet  resultSet  = null;
+		
+		try
+		{
+			connection = DriverManager.getConnection(url, user, password);
+			
+			statement = connection.createStatement();
+			
+			resultSet = statement.executeQuery(query);
+			
+			// TODO Convert resultSet into an iterator
+		}
+		catch (SQLException e)
+		{
+			System.err.println(MYSQL_ERROR_PREFIX + e.getMessage());
+		}
+		finally
+		{
+			if (resultSet != null)
+			{
+				resultSet.close();
+			}
+			
+			if (statement != null)
+			{
+				statement.close();
+			}
+			
+			if (connection != null)
+			{
+				connection.close();
+			}
+		}
+		
 		return null;
+	}
+	
+	/**
+	 * @param url
+	 */
+	public void setUrl(String url)
+	{
+		if (this.url == null)
+		{
+			this.url = url;
+		}
+	}
+
+	/**
+	 * @param user
+	 */
+	public void setUser(String user)
+	{
+		if (this.user == null)
+		{
+			this.user = user;
+		}
+	}
+
+	/**
+	 * @param password
+	 */
+	public void setPassword(String password)
+	{
+		if (this.password == null)
+		{
+			this.password = password;
+		}
+	}
+	
+	/**
+	 * ExecutorException
+	 */
+	public class ExecutorException extends Exception
+	{
+		private static final long serialVersionUID = 8283479030956203260L;
+		
+		public ExecutorException(String message) { super(message); }
 	}
 }
