@@ -96,6 +96,7 @@ public class Executor
 		
 		try
 		{
+			// Connect
 			connection = DriverManager.getConnection(url, user, password);
 			
 			statement = connection.createStatement();
@@ -106,6 +107,7 @@ public class Executor
 		{
 			System.err.println(MYSQL_ERROR_PREFIX + e.getMessage());
 		}
+		// Close all SQL connections
 		finally
 		{
 			if (statement != null)
