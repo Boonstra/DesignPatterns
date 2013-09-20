@@ -3,6 +3,7 @@ package nl.hanze.designpatterns.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
@@ -97,18 +98,18 @@ public class Executor
 		
 		try
 		{
+			// Connect
 			connection = DriverManager.getConnection(url, user, password);
 			
 			statement = connection.createStatement();
 			
-			resultSet = statement.executeQuery(query);
-			
-			// TODO Convert resultSet into an iterator
+			resultSet = statement.executeQuery(query);			
 		}
 		catch (SQLException e)
 		{
 			System.err.println(MYSQL_ERROR_PREFIX + e.getMessage());
 		}
+		// Close all SQL connections
 		finally
 		{
 			if (resultSet != null)
