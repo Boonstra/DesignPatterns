@@ -1,13 +1,23 @@
 package nl.hanze.designpatterns.db;
 
-import java.util.*;
+import java.sql.ResultSet;
+import java.util.Iterator;
 
 public class RowIterator<T> implements Iterator<T>
 {
+	ResultSet resultSet;
+	
 	/**
-	 * TODO Add explanation of why RowIterator is made protected.
+	 * RowIterator is made to protected so it can only be instantiated from the database package,
+	 * but can't be instantiated by classes in other packages. Classes in other packages shouldn't
+	 * have any reason to instantiate this class.
+	 * 
+	 * @param resultSet
 	 */
-	protected RowIterator() { }
+	protected RowIterator(ResultSet resultSet)
+	{
+		this.resultSet = resultSet;
+	}
 	
 	@Override
 	public boolean hasNext()

@@ -2,7 +2,6 @@ package nl.hanze.designpatterns.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
@@ -82,6 +81,7 @@ public class Executor
 	}
 	
 	/**
+	 * @param <T>
 	 * @param query
 	 * @param c
 	 * 
@@ -93,7 +93,6 @@ public class Executor
 	{
 		Connection connection = null;
 		Statement  statement  = null;
-		ResultSet  resultSet  = null;
 		
 		try
 		{
@@ -101,9 +100,7 @@ public class Executor
 			
 			statement = connection.createStatement();
 			
-			resultSet = statement.executeQuery(query);
-			
-			// TODO Convert resultSet into an iterator
+			return new RowIterator<T>(statement.executeQuery(query));
 		}
 		catch (SQLException e)
 		{
@@ -111,11 +108,6 @@ public class Executor
 		}
 		finally
 		{
-			if (resultSet != null)
-			{
-				resultSet.close();
-			}
-			
 			if (statement != null)
 			{
 				statement.close();
