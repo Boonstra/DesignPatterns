@@ -64,7 +64,7 @@ public class Executor
 		}
 		catch (SQLException e)
 		{
-			System.err.println(MYSQL_ERROR_PREFIX + e.getMessage());
+			e.printStackTrace();
 		}
 		finally
 		{
@@ -101,24 +101,12 @@ public class Executor
 			
 			statement = connection.createStatement();
 			
-			return new RowIterator<T>(statement.executeQuery(query));
+			// Execute query and create a new typed RowIterator 
+			return new RowIterator<T>(statement.executeQuery(query), c);
 		}
 		catch (SQLException e)
 		{
-			System.err.println(MYSQL_ERROR_PREFIX + e.getMessage());
-		}
-		// Close all SQL connections
-		finally
-		{
-			if (statement != null)
-			{
-				statement.close();
-			}
-			
-			if (connection != null)
-			{
-				connection.close();
-			}
+			e.printStackTrace();
 		}
 		
 		return null;

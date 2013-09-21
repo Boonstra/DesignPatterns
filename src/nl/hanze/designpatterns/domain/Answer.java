@@ -1,5 +1,6 @@
 package nl.hanze.designpatterns.domain;
 
-public class Answer {
+public class Answer
+{
 
 }

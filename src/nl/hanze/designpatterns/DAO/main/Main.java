@@ -1,7 +1,9 @@
 package nl.hanze.designpatterns.DAO.main;
 
+import nl.hanze.designpatterns.DAO.impl.db.LoginCredentialDAOImpl;
 import nl.hanze.designpatterns.db.Executor;
 import nl.hanze.designpatterns.db.Executor.ExecutorException;
+import nl.hanze.designpatterns.domain.LoginCredential;
 
 public class Main
 {
@@ -14,10 +16,12 @@ public class Main
 			executor.setUrl("jdbc:mysql://localhost:3306/designpatterns");
 			executor.setUser("root");
 			executor.setPassword("");
+			
+			new LoginCredentialDAOImpl().isValid(new LoginCredential("admin", "admin"));
 		}
 		catch (ExecutorException e)
 		{
-			System.err.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 }
