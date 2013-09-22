@@ -2,6 +2,8 @@ package nl.hanze.designpatterns.domain;
 
 public class TroubleTicket
 {
+	private int ID;
+	
 	private String userName;
 	private String callerName;
 	private String description;
@@ -14,6 +16,21 @@ public class TroubleTicket
 		this.setDescription(description);
 		this.setDateTime(dateTime);
 	}
+	
+	public int getID()
+	{
+		return ID;
+	}
+	
+	public void setID(int ID)
+	{
+		this.ID = ID;
+	}
+	
+	public void setID(Object ID)
+	{
+		this.ID = Integer.parseInt(ID.toString());
+	}
 
 	public String getUserName()
 	{
@@ -23,6 +40,11 @@ public class TroubleTicket
 	public void setUserName(String userName)
 	{
 		this.userName = userName;
+	}
+	
+	public void setUserName(Object userName)
+	{
+		this.userName = userName.toString();
 	}
 
 	public String getCallerName()
@@ -34,6 +56,11 @@ public class TroubleTicket
 	{
 		this.callerName = callerName;
 	}
+	
+	public void setCallerName(Object callerName)
+	{
+		this.callerName = callerName.toString();
+	}
 
 	public String getDescription()
 	{
@@ -44,6 +71,11 @@ public class TroubleTicket
 	{
 		this.description = description;
 	}
+	
+	public void setDescription(Object description)
+	{
+		this.description = description.toString();
+	}
 
 	public String getDateTime()
 	{
@@ -53,5 +85,10 @@ public class TroubleTicket
 	public void setDateTime(String dateTime)
 	{
 		this.dateTime = dateTime;
+	}
+	
+	public void setDateTime(Object dateTime)
+	{
+		this.dateTime = dateTime.toString();
 	}
 }

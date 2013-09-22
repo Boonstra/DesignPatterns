@@ -2,7 +2,8 @@ package nl.hanze.designpatterns.domain;
 
 public class LoginCredential
 {
-	private int    ID;
+	private int ID;
+	
 	private String userName;
 	private String password;
 	

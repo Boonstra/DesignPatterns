@@ -45,11 +45,13 @@ public class Executor
 	}
 	
 	/**
+	 * Execute update query
+	 * 
 	 * @param query
 	 * 
 	 * @throws Exception
 	 */
-	public void executeQuery(String query) throws Exception
+	public void executeQuery(String query) throws ExecutorException
 	{
 		Connection connection = null;
 		Statement  statement  = null;
@@ -60,7 +62,7 @@ public class Executor
 			
 			statement = connection.createStatement();
 			
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		}
 		catch (SQLException e)
 		{
@@ -68,19 +70,28 @@ public class Executor
 		}
 		finally
 		{
-			if (statement != null)
+			try
 			{
-				statement.close();
+				if (statement != null)
+				{
+					statement.close();
+				}
+				
+				if (connection != null)
+				{
+					connection.close();
+				}
 			}
-			
-			if (connection != null)
+			catch (SQLException e)
 			{
-				connection.close();
+				e.printStackTrace();
 			}
 		}
 	}
 	
 	/**
+	 * Execute select query
+	 * 
 	 * @param <T>
 	 * @param query
 	 * @param c
@@ -89,7 +100,7 @@ public class Executor
 	 * 
 	 * @throws Exception
 	 */
-	public <T> Iterator<T> getIterator(String query, Class<T> c) throws Exception
+	public <T> Iterator<T> getIterator(String query, Class<T> c) throws ExecutorException
 	{
 		Connection connection = null;
 		Statement  statement  = null;

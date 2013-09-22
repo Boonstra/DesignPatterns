@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.Iterator;
 
 public class RowIterator<T> implements Iterator<T>
@@ -65,8 +64,6 @@ public class RowIterator<T> implements Iterator<T>
 				try
 				{
 					String columnName = resultSetMetaData.getColumnName(columnIndex);
-					String columnTypeName = resultSetMetaData.getColumnTypeName(columnIndex);
-					int    columnType = resultSetMetaData.getColumnType(columnIndex);
 					
 					// Capitalize first character
 					columnName = columnName.substring(0, 1).toUpperCase() + columnName.substring(1);

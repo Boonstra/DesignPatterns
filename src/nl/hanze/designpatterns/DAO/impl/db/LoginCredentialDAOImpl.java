@@ -3,6 +3,7 @@ package nl.hanze.designpatterns.DAO.impl.db;
 import java.util.Iterator;
 
 import nl.hanze.designpatterns.DAO.LoginCredentialDAO;
+import nl.hanze.designpatterns.db.Executor.ExecutorException;
 import nl.hanze.designpatterns.domain.LoginCredential;
 
 public class LoginCredentialDAOImpl extends BaseDAOImpl implements LoginCredentialDAO
@@ -25,7 +26,7 @@ public class LoginCredentialDAOImpl extends BaseDAOImpl implements LoginCredenti
 		try
 		{
 			// Get the user with the given userName/password combination from the database
-			Iterator<LoginCredential> iterator = executor.getIterator("SELECT user.* FROM user WHERE userName='" + userName + "' AND password='" + password + "'", LoginCredential.class);
+			Iterator<LoginCredential> iterator = executor.getIterator("SELECT * FROM users WHERE userName='" + userName + "' AND password='" + password + "'", LoginCredential.class);
 			
 			// Only one result is needed
 			if (iterator.hasNext())
@@ -42,7 +43,7 @@ public class LoginCredentialDAOImpl extends BaseDAOImpl implements LoginCredenti
 				}
 			}
 		}
-		catch (Exception e)
+		catch (ExecutorException e)
 		{
 			e.printStackTrace();
 		}
