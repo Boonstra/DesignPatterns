@@ -9,6 +9,8 @@ public class TroubleTicket
 	private String description;
 	private String dateTime;
 	
+	public TroubleTicket() { }
+	
 	public TroubleTicket(String userName, String callerName, String description, String dateTime)
 	{
 		this.setUserName(userName);

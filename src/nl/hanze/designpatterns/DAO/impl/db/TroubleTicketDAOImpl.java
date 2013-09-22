@@ -10,13 +10,26 @@ import nl.hanze.designpatterns.domain.TroubleTicket;
 
 public class TroubleTicketDAOImpl extends BaseDAOImpl implements TroubleTicketDAO
 {
+	public List<TroubleTicket> getTroubleTickets()
+	{
+		return getTroubleTicketsByName("");
+	}
+	
 	@Override
 	public List<TroubleTicket> getTroubleTicketsByName(String callerName)
 	{
 		try
 		{
+			// Build select query
+			String selectQuery = "SELECT * FROM troubletickets";
+			
+			if (callerName.length() > 0)
+			{
+				 selectQuery += " WHERE callerName = '" + callerName + "'";
+			}
+			
 			// Select all trouble tickets with the passed caller name
-			Iterator<TroubleTicket> troubleTicketsIterator = executor.getIterator("SELECT * FROM troubletickets  WHERE callerName = '" + callerName + "'", TroubleTicket.class);
+			Iterator<TroubleTicket> troubleTicketsIterator = executor.getIterator(selectQuery, TroubleTicket.class);
 			
 			List<TroubleTicket> troubleTicketsList = new ArrayList<TroubleTicket>();
 			
