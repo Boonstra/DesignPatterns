@@ -10,9 +10,11 @@ import nl.hanze.designpatterns.DAO.QuestionDAO;
  * @author Vincent
  *
  */
-public class Question implements QuestionDAO {
+public class Question implements QuestionDAO, java.io.Serializable {
 
 	private String questionString;
+    //Collection of child questions.
+    private List<QuestionDAO> childQuestions = new ArrayList<QuestionDAO>();
 	
 	/**
 	 * Constructor
@@ -23,13 +25,9 @@ public class Question implements QuestionDAO {
 	}
 	
 	@Override
-	public nl.hanze.designpatterns.domain.Question getRootQuestion() {
-		// TODO Auto-generated method stub
-		return null;
+	public Question getRootQuestion() {
+        return null;
 	}
-	
-    //Collection of child questions.
-    private List<QuestionDAO> childQuestions = new ArrayList<QuestionDAO>();
  
     //Prints the answers.
     public void print() {

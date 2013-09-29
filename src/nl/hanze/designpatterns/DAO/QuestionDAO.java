@@ -4,7 +4,6 @@ import nl.hanze.designpatterns.domain.*;
 
 /**
  * Component interface
- * @author Vincent
  *
  */
 public interface QuestionDAO {
