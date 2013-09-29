@@ -8,7 +8,7 @@ import nl.hanze.designpatterns.domain.Question;
  * @author Vincent
  *
  */
-public class Answer implements QuestionDAO {
+public class Answer implements QuestionDAO, java.io.Serializable {
 
 	private String answerString;
 	
@@ -18,7 +18,6 @@ public class Answer implements QuestionDAO {
 	
 	@Override
 	public Question getRootQuestion() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
