@@ -5,18 +5,18 @@ import java.io.FileWriter;
 
 public class CryptedIOStreamTest
 {
-	public static void main(String[] args)
-	{
-		try
-		{
+//	public static void main(String[] args)
+//	{
+//		try
+//		{
 //			CryptedOutputStream cryptedOutputStream = new CryptedOutputStream(new FileWriter("crypted_Stefan.txt"));
 //			
 //			cryptedOutputStream.write("boonstra");
 //			
 //			cryptedOutputStream.close();
-			
-			
-			
+//			
+//			
+//			
 //			CryptedInputStream cryptedInputStream = new CryptedInputStream(new FileReader("crypted.txt"));
 //			
 //			int character;
@@ -27,10 +27,10 @@ public class CryptedIOStreamTest
 //			}
 //			
 //			cryptedInputStream.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+//		}
+//		catch (Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//	}
 }

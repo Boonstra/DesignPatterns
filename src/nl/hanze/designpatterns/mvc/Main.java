@@ -33,11 +33,11 @@ public class Main {
                 View view = new View("-"); 
                 Controller controller = new Controller(model,view);
                 
-                Question question1 = new Question("What?");
-                Answer answer1 = new Answer("That's what!");
-                
-                question1.add(answer1);
-                question1.print();
+//                Question question1 = new Question("What?");
+//                Answer answer1 = new Answer("That's what!");
+//                
+//                question1.add(answer1);
+//                question1.print();
             }
         });  
     }
