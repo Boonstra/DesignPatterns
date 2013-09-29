@@ -1,4 +1,4 @@
-package nl.hanze.designpatterns.io;
+package nl.hanze.designpatterns.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
