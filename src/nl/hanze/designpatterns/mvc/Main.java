@@ -34,17 +34,9 @@ public class Main {
                 Model model = new Model();
                 View view = new View("-"); 
                 Controller controller = new Controller(model,view);
-<<<<<<< HEAD
                 
-//                Question question1 = new Question("What?");
-//                Answer answer1 = new Answer("That's what!");
-//                
-//                question1.add(answer1);
-//                question1.print();
-=======
                 new QuestionSerialize();
                 new QuestionDAOImpl();
->>>>>>> origin/Assignment-3
             }
         });  
     }
