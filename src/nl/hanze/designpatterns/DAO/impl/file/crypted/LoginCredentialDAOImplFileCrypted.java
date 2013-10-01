@@ -11,11 +11,11 @@ import nl.hanze.designpatterns.io.CryptedOutputStream;
 public class LoginCredentialDAOImplFileCrypted implements LoginCredentialDAO
 {
 	@Override
-	public boolean isValid(LoginCredential logincredential)
+	public boolean isValid(LoginCredential loginCredential)
 	{
 		try
 		{
-			CryptedInputStream cryptedInputStream = new CryptedInputStream(new FileReader("crypted_" + logincredential.getUserName() + ".txt"));
+			CryptedInputStream cryptedInputStream = new CryptedInputStream(new FileReader("crypted_" + loginCredential.getUserName() + ".txt"));
 			
 			int    character;
 			String cryptedPassword = "";
@@ -27,7 +27,7 @@ public class LoginCredentialDAOImplFileCrypted implements LoginCredentialDAO
 			
 			cryptedInputStream.close();
 			
-			if (cryptedPassword.equals(CryptedOutputStream.encrypt(logincredential.getPassword())))
+			if (cryptedPassword.equals(CryptedOutputStream.encrypt(loginCredential.getPassword())))
 			{
 				return true;
 			}

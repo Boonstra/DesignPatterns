@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import nl.hanze.designpatterns.DAO.LoginCredentialDAO;
 import nl.hanze.designpatterns.DAO.impl.db.LoginCredentialDAOImpl;
 import nl.hanze.designpatterns.DAO.impl.db.TroubleTicketDAOImpl;
+import nl.hanze.designpatterns.DAOFactory.DAOFactoryLogin;
 import nl.hanze.designpatterns.domain.LoginCredential;
 import nl.hanze.designpatterns.domain.TroubleTicket;
 import nl.hanze.designpatterns.model.Model;
@@ -39,7 +40,9 @@ public class Controller implements ActionListener{
 				String username = view.getLoginView().getUsername().getText();
 				String password = view.getLoginView().getPassword().getText();
 				
-				if(model.login(username, password)){
+				DAOFactoryLogin daoFactoryLogin = (DAOFactoryLogin) view.getLoginView().getLoginMethodJComboBox().getSelectedItem();
+				
+				if(model.login(username, password, daoFactoryLogin)){
 					view.getFormsWindow().setVisible(false);
 					view.getMainWindow().setVisible(true);
 				}

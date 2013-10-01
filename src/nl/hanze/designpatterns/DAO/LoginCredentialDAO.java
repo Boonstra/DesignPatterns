@@ -4,5 +4,5 @@ import nl.hanze.designpatterns.domain.*;
 
 public interface LoginCredentialDAO
 {
-	public boolean isValid(LoginCredential logincredential);
+	public boolean isValid(LoginCredential loginCredential);
 }
