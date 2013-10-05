@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import nl.hanze.designpatterns.DAO.QuestionDAO;
+import nl.hanze.designpatterns.domain.Answer;
 import nl.hanze.designpatterns.domain.Question;
 
 public class QuestionDAOImpl implements QuestionDAO {
@@ -29,23 +30,26 @@ public class QuestionDAOImpl implements QuestionDAO {
            c.printStackTrace();
            return;
         }
+        answerQuestion();
 	}
 	@Override
 	public Question getRootQuestion() {
         return q;
 	}
-
-	@Override
-	public void print() {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	public void answerQuestion(String question){
-		String[] parts = question.split(" ");
-        for (String part : parts) {
-            q.print();
+	public void answerQuestion(){
+        Answer a = q.answerQuestion(getRootQuestion(), "Fiets gestolen");
+        if(a == null){
+        	System.out.println("Geen antwoord gevonden");
         }
+        else{
+        	System.out.println(a.getAnswer());
+        }
+	}
+	@Override
+	public Answer answerQuestion(QuestionDAO q, String question) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

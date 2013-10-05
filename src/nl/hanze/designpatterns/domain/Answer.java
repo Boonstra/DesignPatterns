@@ -10,6 +10,10 @@ import nl.hanze.designpatterns.domain.Question;
  */
 public class Answer implements QuestionDAO, java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6565298436355936200L;
 	private String answerString;
 	
 	public Answer(String answer){
@@ -20,14 +24,14 @@ public class Answer implements QuestionDAO, java.io.Serializable {
 	public Question getRootQuestion() {
 		return null;
 	}
-
-	@Override
-	public void print() {
-		System.out.println(getAnswer());
-	}
 	
 	public String getAnswer(){
 		return answerString;
+	}
+
+	@Override
+	public Answer answerQuestion(QuestionDAO q, String question) {
+		return this;
 	}
 
 }

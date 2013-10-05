@@ -28,12 +28,28 @@ public class Question implements QuestionDAO, java.io.Serializable {
 	public Question getRootQuestion() {
         return null;
 	}
- 
-    //Prints the answers.
-    public void print() {
-        for (QuestionDAO question : childQuestions) {
-            question.print();
-        }
+    
+    /**
+     * Answer question recursively
+     * @param question
+     * @return
+     */
+    public Answer answerQuestion(QuestionDAO qImpl, String question){
+    	Answer a = null;
+		String[] words = question.split("\\s+");
+    	for (int i = 0; i < words.length; i++) {
+    		if(words[i].toLowerCase().equals(this.questionString)){
+    			for (QuestionDAO q : childQuestions){
+    				if(a instanceof Answer){
+    					return a;
+    				}
+    				else{
+    					a = q.answerQuestion(q, question);
+    				}
+    			}
+    		}
+    	}
+    	return a;
     }
  
     //Adds the question to the composition.

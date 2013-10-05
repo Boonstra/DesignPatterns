@@ -10,14 +10,14 @@ public class QuestionSerialize {
 
   public QuestionSerialize(){
     //create a Serializable List
-    Question fiets1 = new Question("Fiets");
+    Question fiets1 = new Question("fiets");
     
-    Question fiets2 = new Question("Band");
-    Question fiets3 = new Question("Leeg");
-    Question fiets4 = new Question("Plat");
+    Question fiets2 = new Question("band");
+    Question fiets3 = new Question("leeg");
+    Question fiets4 = new Question("plat");
     
-    Question fiets5 = new Question("Ketting");
-    Question fiets6 = new Question("Gestolen");
+    Question fiets5 = new Question("ketting");
+    Question fiets6 = new Question("gestolen");
     
     Answer answer1 = new Answer("Band plakken");
     Answer answer2 = new Answer("Politie bellen");

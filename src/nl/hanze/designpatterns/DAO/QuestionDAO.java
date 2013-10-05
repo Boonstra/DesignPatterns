@@ -8,6 +8,5 @@ import nl.hanze.designpatterns.domain.*;
  */
 public interface QuestionDAO {
 	public Question getRootQuestion();
-
-	public void print();
+	public Answer answerQuestion(QuestionDAO q, String question);
 }
