@@ -11,6 +11,7 @@ import nl.hanze.designpatterns.DAO.LoginCredentialDAO;
 import nl.hanze.designpatterns.DAO.impl.db.LoginCredentialDAOImpl;
 import nl.hanze.designpatterns.DAO.impl.db.TroubleTicketDAOImpl;
 import nl.hanze.designpatterns.DAOFactory.DAOFactoryLogin;
+import nl.hanze.designpatterns.domain.Answer;
 import nl.hanze.designpatterns.domain.LoginCredential;
 import nl.hanze.designpatterns.domain.TroubleTicket;
 import nl.hanze.designpatterns.model.Model;
@@ -27,6 +28,7 @@ public class Controller implements ActionListener{
         this.model = model;
         this.view = view;
         view.getLoginView().getLoginButton().addActionListener(this);
+        view.getQAThesaurusView().getAnswerQuestionButton().addActionListener(this);
     }
     
     private void linkBtnAndLabel(){
@@ -54,6 +56,15 @@ public class Controller implements ActionListener{
 				ex.printStackTrace();
 			}
 				
+		}
+		else if(e.getSource() == view.getQAThesaurusView().getAnswerQuestionButton()){
+			 Answer a = model.getQuestionDAOImpl().answerQuestion(model.getQuestionDAOImpl().getRootQuestion(), view.getQAThesaurusView().getQuestion().getText());
+		        if(a == null){
+		        	view.getQAThesaurusView().setAnswerField("No answer found");
+		        }
+		        else{
+		        	view.getQAThesaurusView().setAnswerField(a.getAnswer());
+		        }
 		}
 		else{
 			JOptionPane.showMessageDialog(null, "Unimplemented function");

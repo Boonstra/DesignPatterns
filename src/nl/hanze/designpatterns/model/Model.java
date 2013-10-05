@@ -3,6 +3,7 @@ package nl.hanze.designpatterns.model;
 import nl.hanze.designpatterns.DAO.impl.db.LoginCredentialDAOImpl;
 import nl.hanze.designpatterns.DAO.impl.db.TroubleTicketDAOImpl;
 import nl.hanze.designpatterns.DAO.impl.file.crypted.LoginCredentialDAOImplFileCrypted;
+import nl.hanze.designpatterns.DAO.impl.ser.QuestionDAOImpl;
 import nl.hanze.designpatterns.DAOFactory.DAOFactoryLogin;
 import nl.hanze.designpatterns.domain.LoginCredential;
 
@@ -10,7 +11,11 @@ public class Model
 {    
     private LoginCredentialDAOImpl login;
     private TroubleTicketDAOImpl tt;
+    private QuestionDAOImpl q;
     
+    public Model(){
+    	q = new QuestionDAOImpl();
+    }
     public boolean login(String username, String password, DAOFactoryLogin daoFactoryLogin)
     {
     	if (daoFactoryLogin.isValid(new LoginCredential(username, password)))
@@ -29,5 +34,8 @@ public class Model
 //		else{
 //			return false;
 //		}
+    }
+    public QuestionDAOImpl getQuestionDAOImpl(){
+    	return q;
     }
 }

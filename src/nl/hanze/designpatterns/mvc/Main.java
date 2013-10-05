@@ -36,7 +36,6 @@ public class Main {
                 Controller controller = new Controller(model,view);
 
                 new QuestionSerialize();
-                new QuestionDAOImpl();
             }
         });  
     }

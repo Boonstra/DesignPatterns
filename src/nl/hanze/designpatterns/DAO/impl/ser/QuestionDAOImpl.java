@@ -37,19 +37,12 @@ public class QuestionDAOImpl implements QuestionDAO {
         return q;
 	}
 	
-	public void answerQuestion(){
-        Answer a = q.answerQuestion(getRootQuestion(), "Fiets gestolen");
-        if(a == null){
-        	System.out.println("Geen antwoord gevonden");
-        }
-        else{
-        	System.out.println(a.getAnswer());
-        }
+	public Answer answerQuestion(){
+        return q.answerQuestion(getRootQuestion(), "Fiets gestolen");
 	}
 	@Override
 	public Answer answerQuestion(QuestionDAO q, String question) {
-		// TODO Auto-generated method stub
-		return null;
+		return q.answerQuestion(q, question);
 	}
 	
 }

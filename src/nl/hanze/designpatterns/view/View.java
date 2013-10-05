@@ -13,9 +13,10 @@ public class View {
     private LoginView login;
     private JLabel label;
     private JButton button;
-
+    private QAThesaurusView qa;
     
     public View(String text){
+    	qa = new QAThesaurusView();
         mainWindow = new JFrame("Helpdesk");                             
         forms = new JFrame("Login");
         forms.getContentPane().setLayout(new BorderLayout());
@@ -77,12 +78,7 @@ public class View {
     		panel = new TicketOverview();
     	}
     	else if(text.equals("Solutions")){
-    		//panel = new QAThesaurusView();
-    		panel = new JPanel(false);
-            JLabel filler = new JLabel(text);
-            filler.setHorizontalAlignment(JLabel.CENTER);
-            panel.setLayout(new GridLayout(1, 1));
-            panel.add(filler);
+    		panel = qa;
     	}
     	else{
     		panel = new JPanel(false);
@@ -139,5 +135,9 @@ public class View {
     
     public LoginView getLoginView(){
     	return login;
+    }
+    
+    public QAThesaurusView getQAThesaurusView(){
+    	return qa;
     }
 }
