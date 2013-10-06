@@ -18,18 +18,26 @@ public class QuestionSerialize {
     
     Question fiets5 = new Question("ketting");
     Question fiets6 = new Question("gestolen");
+    Question fiets7 = new Question("af");
+    Question fiets8 = new Question("eraf");
     
     Answer answer1 = new Answer("Band plakken");
     Answer answer2 = new Answer("Politie bellen");
+    Answer answer3 = new Answer("Ketting terug op de fiets zetten");
     
     fiets3.add(answer1);
     fiets4.add(answer1);
     fiets6.add(answer2);
+    fiets7.add(answer3);
+    fiets8.add(answer3);
     
     fiets2.add(fiets3);
     fiets2.add(fiets4);
     fiets2.add(fiets6);
+    
     fiets5.add(fiets6);
+    fiets5.add(fiets7);
+    fiets5.add(fiets8);
     
     fiets1.add(fiets2);
     fiets1.add(fiets5);
